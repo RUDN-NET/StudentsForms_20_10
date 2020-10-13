@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using StudentsForms.Models;
 
 namespace StudentsForms
 {
@@ -27,20 +29,57 @@ namespace StudentsForms
 
             var file_name = OpenStudentsDataFileDialog.FileName;
 
-            LoadStudentsFromFile(file_name);
+            var students = LoadStudentsFromFile(file_name);
+
+            //foreach (var student in students)
+            //    StudentsList.Items.Add(student);
+            StudentsList.Items.AddRange(students);
+
         }
 
-        private static void LoadStudentsFromFile(string FileName)
+        private static Student[] LoadStudentsFromFile(string FileName)
         {
+            var students = new List<Student>();
+
             using (var reader = new StreamReader(FileName))
             {
+                if (!reader.EndOfStream)
+                    reader.ReadLine();
+
                 while (!reader.EndOfStream)
                 {
                     var line = reader.ReadLine();
 
                     var components = line.Split(';');
+
+                    var student = new Student
+                    {
+                        Id = int.Parse(components[0]),
+                        Surname = components[1],
+                        FirstName = components[2],
+                        Patronymic = components[3],
+                    };
+
+                    students.Add(student);
                 }
             }
+
+            return students.ToArray();
+        }
+
+        private void StudentsList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //var student_index = StudentsList.SelectedIndex;
+            var list = (ListBox)sender;
+            //var list2 = sender as ListBox;
+
+            var student_index = list.SelectedIndex;
+
+            if (student_index < 0) return;
+
+            var selected_student = (Student)list.Items[student_index];
+
+            StudentInfoLabel.Text = $"{selected_student.Surname} {selected_student.FirstName} {selected_student.Patronymic}";
         }
     }
 }

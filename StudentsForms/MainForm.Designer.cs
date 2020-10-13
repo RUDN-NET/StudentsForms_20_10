@@ -62,6 +62,7 @@
             this.OpenFileButton = new System.Windows.Forms.Button();
             this.OpenStudentsDataFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.StudentsList = new System.Windows.Forms.ListBox();
+            this.StudentInfoLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -324,12 +325,23 @@
             this.StudentsList.Name = "StudentsList";
             this.StudentsList.Size = new System.Drawing.Size(764, 349);
             this.StudentsList.TabIndex = 2;
+            this.StudentsList.SelectedIndexChanged += new System.EventHandler(this.StudentsList_SelectedIndexChanged);
+            // 
+            // StudentInfoLabel
+            // 
+            this.StudentInfoLabel.AutoSize = true;
+            this.StudentInfoLabel.Location = new System.Drawing.Point(174, 35);
+            this.StudentInfoLabel.Name = "StudentInfoLabel";
+            this.StudentInfoLabel.Size = new System.Drawing.Size(38, 15);
+            this.StudentInfoLabel.TabIndex = 3;
+            this.StudentInfoLabel.Text = "label1";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.StudentInfoLabel);
             this.Controls.Add(this.StudentsList);
             this.Controls.Add(this.OpenFileButton);
             this.Controls.Add(this.menuStrip1);
@@ -378,6 +390,7 @@
         private System.Windows.Forms.Button OpenFileButton;
         private System.Windows.Forms.OpenFileDialog OpenStudentsDataFileDialog;
         private System.Windows.Forms.ListBox StudentsList;
+        private System.Windows.Forms.Label StudentInfoLabel;
     }
 }
 
