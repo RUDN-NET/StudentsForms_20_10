@@ -1,0 +1,37 @@
+﻿<Decanat>
+  <Group Id="1" Name="T-34-tr-2">
+    <Student Id="1">
+      <Surname>Иванов</Surname>
+      <FirstName>Иван</FirstName>
+      <Patronymic>Иванович</Patronymic>
+    </Student>
+    <Student Id="2">
+      <Surname>Петров</Surname>
+      <FirstName>Пётр</FirstName>
+      <Patronymic>Петрович</Patronymic>
+    </Student>
+    <Student Id="3">
+      <Surname>Сидоров</Surname>
+      <FirstName>Сидор</FirstName>
+      <Patronymic>Сидорович</Patronymic>
+    </Student>
+  </Group>
+
+  <Group Id="2" Name="T-34-tr-1">
+    <Student Id="4">
+      <Surname>Иванов1</Surname>
+      <FirstName>Иван1</FirstName>
+      <Patronymic>Иванович1</Patronymic>
+    </Student>
+    <Student Id="5">
+      <Surname>Петров2</Surname>
+      <FirstName>Пётр2</FirstName>
+      <Patronymic>Петрович2</Patronymic>
+    </Student>
+    <Student Id="6">
+      <Surname>Сидоров3</Surname>
+      <FirstName>Сидор3</FirstName>
+      <Patronymic>Сидорович3</Patronymic>
+    </Student>
+  </Group>
+</Decanat>
