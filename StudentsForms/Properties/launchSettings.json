@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "StudentsForms": {
+      "commandName": "Project",
+      "commandLineArgs": "--Hello!"
+    }
+  }
+}
