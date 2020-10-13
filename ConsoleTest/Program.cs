@@ -45,29 +45,22 @@ namespace ConsoleTest
 
             foreach (var group_xml in decanat.Descendants("Group"))
             {
-                var group_id = (int)group_xml.Attribute("Id");
-                var group_name = (string)group_xml.Attribute("Name");
-
-                var group = new Group { Id = group_id, Name = group_name };
+                var group = new Group
+                {
+                    Id = (int)group_xml.Attribute("Id"), 
+                    Name = (string)group_xml.Attribute("Name")
+                };
                 groups.Add(group);
 
                 foreach (var student_xml in group_xml.Descendants("Student"))
-                {
-                    var student_id = (int)student_xml.Attribute("Id");
-                    var student_surname = (string)student_xml.Element("Surname");
-                    var student_firstname = (string)student_xml.Element("FirstName");
-                    var student_patronymic = (string)student_xml.Element("Patronymic");
-
-                    var student = new Student
-                    {
-                        Id = student_id,
-                        Surname = student_surname,
-                        FirstName = student_firstname,
-                        Patronymic = student_patronymic,
-                    };
-
-                    group.Students.Add(student);
-                }
+                    group.Students.Add(
+                        new Student
+                        {
+                            Id = (int) student_xml.Attribute("Id"),
+                            Surname = (string) student_xml.Element("Surname"),
+                            FirstName = (string) student_xml.Element("FirstName"),
+                            Patronymic = (string) student_xml.Element("Patronymic"),
+                        });
             }
 
             return groups.ToArray();
