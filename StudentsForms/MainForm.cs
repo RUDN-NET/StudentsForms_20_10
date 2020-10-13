@@ -31,6 +31,7 @@ namespace StudentsForms
 
             var students = LoadStudentsFromFile(file_name);
 
+            StudentsList.Items.Clear();
             //foreach (var student in students)
             //    StudentsList.Items.Add(student);
             StudentsList.Items.AddRange(students);
@@ -75,11 +76,22 @@ namespace StudentsForms
 
             var student_index = list.SelectedIndex;
 
-            if (student_index < 0) return;
+            if (student_index < 0)
+            {
+                StudentInfoLabel.Text = "";
+                return;
+            }
 
             var selected_student = (Student)list.Items[student_index];
 
             StudentInfoLabel.Text = $"{selected_student.Surname} {selected_student.FirstName} {selected_student.Patronymic}";
+        }
+
+        private void RemoveStudentButton_Click(object sender, EventArgs e)
+        {
+            var student_index = StudentsList.SelectedIndex;
+            if (student_index < 0) return;
+            StudentsList.Items.RemoveAt(student_index);
         }
     }
 }

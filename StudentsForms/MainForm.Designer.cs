@@ -63,6 +63,7 @@
             this.OpenStudentsDataFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.StudentsList = new System.Windows.Forms.ListBox();
             this.StudentInfoLabel = new System.Windows.Forms.Label();
+            this.RemoveStudentButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -336,11 +337,22 @@
             this.StudentInfoLabel.TabIndex = 3;
             this.StudentInfoLabel.Text = "label1";
             // 
+            // RemoveStudentButton
+            // 
+            this.RemoveStudentButton.Location = new System.Drawing.Point(701, 31);
+            this.RemoveStudentButton.Name = "RemoveStudentButton";
+            this.RemoveStudentButton.Size = new System.Drawing.Size(75, 23);
+            this.RemoveStudentButton.TabIndex = 4;
+            this.RemoveStudentButton.Text = "Удалить";
+            this.RemoveStudentButton.UseVisualStyleBackColor = true;
+            this.RemoveStudentButton.Click += new System.EventHandler(this.RemoveStudentButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.RemoveStudentButton);
             this.Controls.Add(this.StudentInfoLabel);
             this.Controls.Add(this.StudentsList);
             this.Controls.Add(this.OpenFileButton);
@@ -391,6 +403,7 @@
         private System.Windows.Forms.OpenFileDialog OpenStudentsDataFileDialog;
         private System.Windows.Forms.ListBox StudentsList;
         private System.Windows.Forms.Label StudentInfoLabel;
+        private System.Windows.Forms.Button RemoveStudentButton;
     }
 }
 
