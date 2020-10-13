@@ -64,6 +64,7 @@
             this.StudentsList = new System.Windows.Forms.ListBox();
             this.StudentInfoLabel = new System.Windows.Forms.Label();
             this.RemoveStudentButton = new System.Windows.Forms.Button();
+            this.CreateStudentButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -327,6 +328,7 @@
             this.StudentsList.Size = new System.Drawing.Size(764, 349);
             this.StudentsList.TabIndex = 2;
             this.StudentsList.SelectedIndexChanged += new System.EventHandler(this.StudentsList_SelectedIndexChanged);
+            this.StudentsList.DoubleClick += new System.EventHandler(this.StudentsList_DoubleClick);
             // 
             // StudentInfoLabel
             // 
@@ -347,11 +349,22 @@
             this.RemoveStudentButton.UseVisualStyleBackColor = true;
             this.RemoveStudentButton.Click += new System.EventHandler(this.RemoveStudentButton_Click);
             // 
+            // CreateStudentButton
+            // 
+            this.CreateStudentButton.Location = new System.Drawing.Point(607, 31);
+            this.CreateStudentButton.Name = "CreateStudentButton";
+            this.CreateStudentButton.Size = new System.Drawing.Size(88, 23);
+            this.CreateStudentButton.TabIndex = 5;
+            this.CreateStudentButton.Text = "Создать";
+            this.CreateStudentButton.UseVisualStyleBackColor = true;
+            this.CreateStudentButton.Click += new System.EventHandler(this.CreateStudentButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.CreateStudentButton);
             this.Controls.Add(this.RemoveStudentButton);
             this.Controls.Add(this.StudentInfoLabel);
             this.Controls.Add(this.StudentsList);
@@ -404,6 +417,7 @@
         private System.Windows.Forms.ListBox StudentsList;
         private System.Windows.Forms.Label StudentInfoLabel;
         private System.Windows.Forms.Button RemoveStudentButton;
+        private System.Windows.Forms.Button CreateStudentButton;
     }
 }
 

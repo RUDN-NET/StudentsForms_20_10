@@ -92,6 +92,26 @@ namespace StudentsForms
             var student_index = StudentsList.SelectedIndex;
             if (student_index < 0) return;
             StudentsList.Items.RemoveAt(student_index);
+            StudentsList.SelectedIndex = student_index - 1;
+        }
+
+        private void CreateStudentButton_Click(object sender, EventArgs e)
+        {
+            var student = new Student();
+
+            // отредактировать новый объект
+
+            StudentsList.Items.Add(student);
+            StudentsList.SelectedIndex = StudentsList.Items.Count - 1;
+        }
+
+        private void StudentsList_DoubleClick(object sender, EventArgs e)
+        {
+            var student_index = StudentsList.SelectedIndex;
+            if (student_index < 0) return;
+            var selected_student = (Student)StudentsList.Items[student_index];
+
+            // отредактировать выбранный объект
         }
     }
 }
