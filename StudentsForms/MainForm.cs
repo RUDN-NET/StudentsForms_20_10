@@ -97,9 +97,23 @@ namespace StudentsForms
 
         private void CreateStudentButton_Click(object sender, EventArgs e)
         {
-            var student = new Student();
+            var student_editor = new StudentEditorForm
+            {
+                Id = 0,
+                Surname = $"Фамилия 0",
+                FirstName = $"Имя 0",
+                Patronymic = $"Отчество 0",
+            };
 
-            // отредактировать новый объект
+            if(student_editor.ShowDialog() != DialogResult.OK) return;
+
+            var student = new Student
+            {
+                Id = student_editor.Id,
+                Surname = student_editor.Surname,
+                FirstName = student_editor.FirstName,
+                Patronymic = student_editor.Patronymic
+            };
 
             StudentsList.Items.Add(student);
             StudentsList.SelectedIndex = StudentsList.Items.Count - 1;
@@ -111,7 +125,20 @@ namespace StudentsForms
             if (student_index < 0) return;
             var selected_student = (Student)StudentsList.Items[student_index];
 
-            // отредактировать выбранный объект
+            var student_editor = new StudentEditorForm
+            {
+                Id = selected_student.Id,
+                Surname = selected_student.Surname,
+                FirstName = selected_student.FirstName,
+                Patronymic = selected_student.Patronymic,
+            };
+
+            if (student_editor.ShowDialog() != DialogResult.OK) return;
+
+            selected_student.Id = student_editor.Id;
+            selected_student.Surname = student_editor.Surname;
+            selected_student.FirstName = student_editor.FirstName;
+            selected_student.Patronymic = student_editor.Patronymic;
         }
     }
 }
