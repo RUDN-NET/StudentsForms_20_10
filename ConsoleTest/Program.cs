@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 using ConsoleTest.Models;
 
 namespace ConsoleTest
@@ -32,7 +34,55 @@ namespace ConsoleTest
 
             var groups2 = LoadStudentsFromXml2(xml_file);
 
+            const string new_xml_file2 = "StudentGroups_new2.xml";
+            SaveStudentsToXml2(new_xml_file2, groups2);
+
+            var bin_serializer = new BinaryFormatter();
+
+            var xml_serializer = new XmlSerializer(typeof(Group[]));
+
+            const string new_xml_file3 = "StudentGroups_new3.xml";
+            var data_file = new FileInfo(new_xml_file3);
+            using(var file = data_file.Create())
+                xml_serializer.Serialize(file, groups2);
+
+            Group[] groups3 = null;
+            using (var file = data_file.OpenRead())
+                groups3 = (Group[]) xml_serializer.Deserialize(file);
+
             //Console.ReadLine();
+        }
+
+        private static void SaveStudentsToXml2(string FileName, Group[] Groups)
+        {
+            var groups_xml = new List<XElement>();
+
+            foreach (var group in Groups)
+            {
+                var students_xml = new List<XElement>();
+
+                foreach (var student in group.Students)
+                {
+                    var student_xml = new XElement("Student",
+                        new XAttribute("Id", student.Id),
+                        new XElement("Surname", student.Surname),
+                        new XElement("FirstName", student.FirstName),
+                        new XElement("Patronymic", student.Patronymic));
+
+                    students_xml.Add(student_xml);
+                }
+
+                var group_xml = new XElement("Group", 
+                    new XAttribute("Id", group.Id),
+                    new XAttribute("Name", group.Name),
+                    students_xml);
+                groups_xml.Add(group_xml);
+            }
+
+            var decanat_xml = new XElement("Decanat", groups_xml);
+
+            var xml = new XDocument(decanat_xml);
+            xml.Save(FileName);
         }
 
         private static Group[] LoadStudentsFromXml2(string FileName)

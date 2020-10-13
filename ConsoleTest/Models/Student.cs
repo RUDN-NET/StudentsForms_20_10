@@ -1,7 +1,10 @@
-﻿namespace ConsoleTest.Models
+﻿using System.Xml.Serialization;
+
+namespace ConsoleTest.Models
 {
-    class Student
+    public class Student
     {
+        [XmlAttribute]
         public int Id { get; set; }
         public string Surname { get; set; }
         public string FirstName { get; set; }
