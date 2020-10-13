@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
+using System.Xml.Linq;
 using ConsoleTest.Models;
 
 namespace ConsoleTest
@@ -29,7 +30,47 @@ namespace ConsoleTest
             const string new_xml_file = "StudentGroups_new.xml";
             SaveStudentsToXml(new_xml_file, groups);
 
+            var groups2 = LoadStudentsFromXml2(xml_file);
+
             //Console.ReadLine();
+        }
+
+        private static Group[] LoadStudentsFromXml2(string FileName)
+        {
+            var groups = new List<Group>();
+
+            var xml = XDocument.Load(FileName);
+
+            var decanat = xml.Root;
+
+            foreach (var group_xml in decanat.Descendants("Group"))
+            {
+                var group_id = (int)group_xml.Attribute("Id");
+                var group_name = (string)group_xml.Attribute("Name");
+
+                var group = new Group { Id = group_id, Name = group_name };
+                groups.Add(group);
+
+                foreach (var student_xml in group_xml.Descendants("Student"))
+                {
+                    var student_id = (int)student_xml.Attribute("Id");
+                    var student_surname = (string)student_xml.Element("Surname");
+                    var student_firstname = (string)student_xml.Element("FirstName");
+                    var student_patronymic = (string)student_xml.Element("Patronymic");
+
+                    var student = new Student
+                    {
+                        Id = student_id,
+                        Surname = student_surname,
+                        FirstName = student_firstname,
+                        Patronymic = student_patronymic,
+                    };
+
+                    group.Students.Add(student);
+                }
+            }
+
+            return groups.ToArray();
         }
 
         private static void SaveStudentsToXml(string FileName, Group[] Groups)
